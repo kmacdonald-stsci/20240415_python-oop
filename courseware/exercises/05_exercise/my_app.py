@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from abc import ABC, abstractmethod
+
 class BankAccount:
     def __init__(self, account_number: str, balance: float) -> None:
         # Initialize account_number and balance attributes
@@ -46,19 +48,20 @@ class BankAccount:
         print(f"Account Number: {self.account_number}")
         print(f"Balance: ${self.balance:.2f}")
 
-    def calc_interest(self):
-        print("Not implemented")
+    @abstractmethod
+    def calc_interest(self) -> float:
+        pass
 
 
 class SavingsAccount(BankAccount):
-    def calc_interest(self):
+    def calc_interest(self) -> float:
         interest_rate = 0.05
         interest = self.balance * interest_rate
         return interest
 
 
 class CheckingAccount(BankAccount):
-    def calc_interest(self):
+    def calc_interest(self) -> float:
         interest_rate = 0.02
         interest = self.balance * interest_rate
         return interest
