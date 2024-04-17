@@ -7,6 +7,11 @@ class Address:
         self.state = state
         self.zip_code = zip_code
 
+    def __str__(self):
+        return (f"{self.street}\n"
+                f"{self.city}, {self.state} {self.zip_code}")
+
+
 class Person:
     def __init__(
       self, first_name: str, last_name: str, street: str,
@@ -21,9 +26,22 @@ class Person:
                 f"{self.address.city}, {self.address.state} {self.address.zip_code}")
 
 
+class PersonNew:
+    def __init__(self, first_name: str, last_name: str, addr: Address):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = addr
+
+    def __str__(self) -> str:
+        return (f"{self.first_name} {self.last_name}\n"
+                f"{self.address}")
+
+
+
 def main() -> None:
-    person = Person(
-      "John", "Doe", "123 Elm St", "Springfield", "IL", "62701")
+    addr = Address("123 Elm St", "Springfield", "IL", "62701")
+    person = PersonNew("John", "Doe", addr)
+    #   "John", "Doe", "123 Elm St", "Springfield", "IL", "62701")
     print(person)
     
 
